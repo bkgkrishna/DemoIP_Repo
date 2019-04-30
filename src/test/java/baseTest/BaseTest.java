@@ -8,9 +8,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 import pageObjects.Guru99_HomePage;
 import pageObjects.Guru99_LoginPage;
 
@@ -19,17 +17,18 @@ import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
-    public WebDriver driver;
-    public Guru99_LoginPage loginPage;
-    public Guru99_HomePage homePage;
+    public static  WebDriver driver;
+    public static Guru99_LoginPage loginPage;
+    public static Guru99_HomePage homePage;
 
     @Parameters({"nodeUrl","typeOfBrowser"})
-    @BeforeClass
+    @BeforeSuite
         public  void setUp(String url, String browserName) throws MalformedURLException, InterruptedException {
         System.out.println("In before class");
         driver= new RemoteWebDriver(new URL(url), getBrowserCapabilities(browserName));
         driver.navigate().to("http://demo.guru99.com/V4/");
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
         loginPage= PageFactory.initElements(driver,Guru99_LoginPage.class);
         homePage= PageFactory.initElements(driver,Guru99_HomePage.class);
 
@@ -59,7 +58,7 @@ public class BaseTest {
         }
     }
 
-    @AfterClass
+    @AfterSuite
     public void tearDown()
     {
         driver.quit();

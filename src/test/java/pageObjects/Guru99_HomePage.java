@@ -46,6 +46,6 @@ public class Guru99_HomePage {
     @FindBy(name = "password")
     public WebElement password;
 
-    @FindBy(xpath = "sub")
+    @FindBy(name = "sub")
     public WebElement submitButton;
 }
