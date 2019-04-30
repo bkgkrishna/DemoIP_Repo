@@ -6,11 +6,9 @@
         <parameter name="nodeUrl" value="http://localhost:4444/wd/hub"></parameter>
         <parameter name="typeOfBrowser" value="chrome"></parameter>
         <classes>
-            <class name="testScripts.LoginTest">
-        </class>
+            <class name="testScripts.LoginTest"></class>
+            <class name="testScripts.HomeTest"></class>
 
-            <class name="testScripts.HomeTest">
-            </class>
         </classes>
     </test>
 </suite>
